@@ -96,8 +96,10 @@ We don’t need to mention reporter because we are using api token
 # This code sample uses the 'requests' library:
 # http://docs.python-requests.org
 
-import requests \n
-from requests.auth import HTTPBasicAuth \n
+import requests
+
+from requests.auth import HTTPBasicAuth
+
 import json
 
 url = "https://vysyarajujyothsna3.atlassian.net/rest/api/3/issue"
