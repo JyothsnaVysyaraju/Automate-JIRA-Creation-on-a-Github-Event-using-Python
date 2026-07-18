@@ -217,21 +217,17 @@ from flask import Flask
 app = Flask(__name__)
 
 # Define a route that handles POST requests
+
 @app.route('/createJira', methods=['POST'])
 def createJira():
-
     url = "https://vysyarajujyothsna3.atlassian.net/rest/api/3/issue"
     EMAIL = "vysyarajujyothsna3@gmail.com"
-
     API_TOKEN=""
-
     auth = HTTPBasicAuth(EMAIL, API_TOKEN)
-
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json"
     }
-
     payload = json.dumps( {
         "fields": {
         "description": {
@@ -259,7 +255,6 @@ def createJira():
     },
     "update": {}
     } )
-
     response = requests.request(
         "POST",
         url,
@@ -267,13 +262,11 @@ def createJira():
         headers=headers,
         auth=auth
     )
-
     return json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": "))
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
-now use the below public DNS link to link github and jira api through webhook
+now use the below public DNS url to link github and jira api through webhook
 
 <img width="2547" height="574" alt="image" src="https://github.com/user-attachments/assets/1ef5bf12-61c4-4442-924c-62c02bd76280" />
 
