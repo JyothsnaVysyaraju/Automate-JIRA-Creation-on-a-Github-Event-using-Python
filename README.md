@@ -158,6 +158,146 @@ After executing this we will get an output that will create an backlog
 
 <img width="2491" height="1117" alt="image" src="https://github.com/user-attachments/assets/fd828b7a-052c-42c2-b927-d1f2ecf4827a" />
 
+# Jira and GitHub integration using python:
+
+Github has an entity should talk to python using web hooks, the python application can be stored in a Ec2 instance of an server. GitHub has to talk to the python. The python script has to interact with Jira using Jira API’s.
+
+Now we have to convert python script to an API
+
+In the GitHub web hook we have to provide the the Url/API of the python application we have Written. We will use the flask to write this python application. For that we have to convert the python code that we have used earlier to Flask framework so that an API is exposed.
+
+Once we provided that Url to the GitHub, it will send the entire json Payload information.
+
+-> API (Flask Framework): Application Interface
+
+API’s are works on HTTP protocol/ request types 
+
+Post,Get,Put,Delete are 4 API request types
+
+# Install Flask application: 
+
+python3 -m venv .venv 
+source .venv/bin/activate
+
+pip3 install flask (flask is a package)
+
+# Example:
+
+*We just need a flask module, which is a part of flask package (if we take a entire flask package, it will take lot of time to execute entire program)
+
+from flask import Flask
+
+app = Flask(__name__)  —> creating an flask app instance because we will perform all the actions using it.
+
+@app.route(‘/‘)  —> this line is a decorator,  this line will execute before function trigger
+In real time before a person interacting with a micro service, this decorator will helps to authenticate for person verification.
+
+If any person wants to access this hello api are they trying to access on the path / . If they are trying to access on that path / then they can access the hello_world function 
+
+
+def hello_world():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run("0.0.0.0")
+
+Decorator: if someone wants to access the api, will use a decorator before the function definition then it will give access to only the authenticated users to access the function.
+
+
+# Create an Ec2 Instance 
+ssh into that server and create an python file to write the flask application code
+
+# This code sample uses the 'requests' library:
+# http://docs.python-requests.org
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+from flask import Flask
+
+app = Flask(__name__)
+
+# Define a route that handles POST requests
+@app.route('/createJira', methods=['POST'])
+def createJira():
+
+    url = "https://vysyarajujyothsna3.atlassian.net/rest/api/3/issue"
+    EMAIL = "vysyarajujyothsna3@gmail.com"
+
+    API_TOKEN=""
+
+    auth = HTTPBasicAuth(EMAIL, API_TOKEN)
+
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }
+
+    payload = json.dumps( {
+        "fields": {
+        "description": {
+            "content": [
+                {
+                    "content": [
+                        {
+                            "text": "Order entry fails when selecting supplier.",
+                            "type": "text"
+                        }
+                    ],
+                    "type": "paragraph"
+                    }
+                ],
+            "type": "doc",
+             "version": 1
+        },
+        "project": {
+           "key": "SCRUM"
+        },
+        "issuetype": {
+            "id": "10004"
+        },
+        "summary": "Main order flow broken",
+    },
+    "update": {}
+    } )
+
+    response = requests.request(
+        "POST",
+        url,
+        data=payload,
+        headers=headers,
+        auth=auth
+    )
+
+    return json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": "))
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+now use the below public DNS link to link github and jira api through webhook
+
+<img width="2547" height="574" alt="image" src="https://github.com/user-attachments/assets/1ef5bf12-61c4-4442-924c-62c02bd76280" />
+
+<img width="2291" height="1022" alt="image" src="https://github.com/user-attachments/assets/84a580c3-988d-4cfb-b89a-b7d3e69c9f5d" />
+
+<img width="1401" height="436" alt="image" src="https://github.com/user-attachments/assets/8d4b4027-fee9-4ac1-bd3f-1f1198fb39f5" />
+
+now execute the python flask application
+
+<img width="1722" height="317" alt="image" src="https://github.com/user-attachments/assets/dac42e1e-d235-45b6-a420-ad6fbe08280c" />
+
+go to jira issues and create and comment '/jira' 
+
+<img width="1812" height="783" alt="image" src="https://github.com/user-attachments/assets/0caaebfe-3a92-4f60-93e6-129931bc6020" />
+
+<img width="2239" height="1042" alt="image" src="https://github.com/user-attachments/assets/79bb1de5-f92c-4533-9ed8-b627958b9a5c" />
+
+once we have commented in the issue the Jira API will trigger and it will create the backlog 
+
+<img width="1800" height="530" alt="image" src="https://github.com/user-attachments/assets/11b963de-869f-4f1f-a7c9-ce7897e9690b" />
+
+
+
+
 
 
 
