@@ -228,6 +228,7 @@ def createJira():
         "Content-Type": "application/json"
     }
     payload = json.dumps( {
+    
         "fields": {
         "description": {
             "content": [
