@@ -25,8 +25,11 @@ Part2: we will send the json to jira which we have received from the GitHub wher
 
 
 Jira Setup
+
 Jira Api call
+
 Python script
+
 Execution of the script
 
 https://vysyarajujyothsna3.atlassian.net?continue=https%3A%2F%2Fvysyarajujyothsna3.atlassian.net%2Fwelcome%2Fsoftware&atlOrigin=eyJpIjoiZjA1YTA2NjA3MzMxNGQwNWE2NmEwNjY0ODU3ZGQ1YzYiLCJwIjoiaiJ9
@@ -36,10 +39,6 @@ When we want to interact with an application, there are 2 ways either CLI or API
 In Jira board, go to profile and account setting. In security tab, we can create and manage API token
 
 <img width="1887" height="1112" alt="image" src="https://github.com/user-attachments/assets/b595101c-b6f4-4482-8511-d4dfc60b0806" />
-
-<img width="2551" height="842" alt="image" src="https://github.com/user-attachments/assets/310593b3-b30a-4bce-8f57-f604b5bf5479" />
-
-<img width="2321" height="724" alt="image" src="https://github.com/user-attachments/assets/367466cf-64a0-4ac8-b3f4-6358969d44ac" />
 
 Now we have to know how to talk to jira API’s, like which modules in python we have to use and on which url we have to access this jira. 
 
