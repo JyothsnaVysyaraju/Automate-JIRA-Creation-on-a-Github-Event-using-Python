@@ -218,6 +218,7 @@ app = Flask(__name__)
 # Define a route that handles POST requests
 
 @app.route('/createJira', methods=['POST'])
+
 def createJira():
     url = "https://vysyarajujyothsna3.atlassian.net/rest/api/3/issue"
     EMAIL = "vysyarajujyothsna3@gmail.com"
@@ -227,8 +228,7 @@ def createJira():
         "Accept": "application/json",
         "Content-Type": "application/json"
     }
-    payload = json.dumps( {
-    
+    payload = json.dumps( {   
         "fields": {
         "description": {
             "content": [
@@ -263,6 +263,7 @@ def createJira():
         auth=auth
     )
     return json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": "))
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
