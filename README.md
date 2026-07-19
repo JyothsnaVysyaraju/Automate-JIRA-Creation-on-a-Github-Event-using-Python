@@ -206,66 +206,7 @@ Decorator: if someone wants to access the api, will use a decorator before the f
 # Create an Ec2 Instance 
 ssh into that server and create an python file to write the flask application code
 
-# This code sample uses the 'requests' library:
-# http://docs.python-requests.org
-import requests
-from requests.auth import HTTPBasicAuth
-import json
-from flask import Flask
-
-app = Flask(__name__)
-
-# Define a route that handles POST requests
-
-@app.route('/createJira', methods=['POST'])
-
-def createJira():
-    url = "https://vysyarajujyothsna3.atlassian.net/rest/api/3/issue"
-    EMAIL = "vysyarajujyothsna3@gmail.com"
-    API_TOKEN=""
-    auth = HTTPBasicAuth(EMAIL, API_TOKEN)
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-    }
-    payload = json.dumps( {   
-        "fields": {
-        "description": {
-            "content": [
-                {
-                    "content": [
-                        {
-                            "text": "Order entry fails when selecting supplier.",
-                            "type": "text"
-                        }
-                    ],
-                    "type": "paragraph"
-                    }
-                ],
-            "type": "doc",
-             "version": 1
-        },
-        "project": {
-           "key": "SCRUM"
-        },
-        "issuetype": {
-            "id": "10004"
-        },
-        "summary": "Main order flow broken",
-    },
-    "update": {}
-    } )
-    response = requests.request(
-        "POST",
-        url,
-        data=payload,
-        headers=headers,
-        auth=auth
-    )
-    return json.dumps(json.loads(response.text), sort_keys=True, indent=4, separators=(",", ": "))
-    
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+Refer flask-app.py file for python code using flask module
 
 now use the below public DNS url to link github and jira api through webhook
 
