@@ -139,9 +139,10 @@ If any person wants to access this hello api are they trying to access on the pa
 
 
 def hello_world():
-    return 'Hello, World!'
 
+    return 'Hello, World!'
 if __name__ == '__main__':
+
     app.run("0.0.0.0")
 
 Decorator: if someone wants to access the api, will use a decorator before the function definition then it will give access to only the authenticated users to access the function.
