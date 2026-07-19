@@ -44,7 +44,7 @@ Now we have to know how to talk to jira API’s, like which modules in python we
 
 We can refer jira API documentation: https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/
 
-Create a project in jira 
+Create a project/space in jira 
 
 <img width="2106" height="794" alt="image" src="https://github.com/user-attachments/assets/9ebcf050-2bf9-4903-9c1e-0009bbc255ef" />
 
