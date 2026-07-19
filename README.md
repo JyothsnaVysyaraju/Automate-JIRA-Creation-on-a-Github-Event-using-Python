@@ -119,6 +119,7 @@ Post,Get,Put,Delete are 4 API request types
 # Install Flask application: 
 
 python3 -m venv .venv 
+
 source .venv/bin/activate
 
 pip3 install flask (flask is a package)
